@@ -1,0 +1,56 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-ejer3-app
+spec:
+  selector:
+    matchLabels:
+      app: web-ejer3-app
+  replicas: 1 # tells deployment to run 1 pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+      labels:
+        app: web-ejer3-app
+    spec:
+      containers:
+      - name: web-ejer3-app
+        image: codeurjc/java-webapp-bbdd:v2
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "pass"
+        - name: MYSQL_DATABASE
+          value: "test"
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-ejer3-app-service
+  labels:
+    app: web-ejer3-app
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      name: web-ejer3-app-port
+  selector:
+    app: web-ejer3-app
+  type: LoadBalancer
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress  
+metadata:  
+  name: practica-cloud
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:  
+  rules:
+  - host: www.practica.com
+    http:
+      paths:
+      - path: /anuncios(/|$)(.*)
+        backend:
+          serviceName: web-ejer3-app-service
+          servicePort: 8080

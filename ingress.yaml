@@ -1,0 +1,16 @@
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress  
+metadata:  
+  name: albertoalvarezgarcia-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:  
+  rules:
+  - host: www.albertoalvarezgarcia.com
+    http:
+      paths:
+      - path: /anuncios(/|$)(.*)
+        backend:
+          serviceName: web-ejer3-app-service
+          servicePort: 8080
