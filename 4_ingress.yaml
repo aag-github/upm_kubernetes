@@ -12,5 +12,5 @@ spec:
       paths:
       - path: /anuncios(/|$)(.*)
         backend:
-          serviceName: web-ejer3-app-service
+          serviceName: albertoalvarezgarcia-app-service
           servicePort: 8080
