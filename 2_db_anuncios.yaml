@@ -2,50 +2,53 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: db-ejer3-app
+    name: albertoalvarezgarcia-db-deployment
     labels:
+        app: albertoalvarezgarcia-db
         creator: albertoalvarezgarcia
-  
-  
+ 
 spec:
   selector:
     matchLabels:
-      app: db-ejer3-app
+      app: albertoalvarezgarcia-db
   replicas: 1 # tells deployment to run 1 pods matching the template
   template: # create pods using pod definition in this template
     metadata:
-      labels:
-        app: db-ejer3-app
+        labels:
+            app: albertoalvarezgarcia-db
+            creator: albertoalvarezgarcia
     spec:
-      containers:
-      - name: db-ejer3-app
-        image: mysql:5.6
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: "pass"
-        - name: MYSQL_DATABASE
-          value: "test"
-        ports:
-        - containerPort: 3306
-        volumeMounts:
-          - mountPath: "/var/lib/mysql"
-            name: mysql-storage
-      volumes:
+        containers:
+          - name: albertoalvarezgarcia-db-container
+            image: mysql:5.6
+            env:
+                - name: MYSQL_ROOT_PASSWORD
+                  value: "pass"
+                - name: MYSQL_DATABASE
+                  value: "test"
+            ports:
+                - containerPort: 3306
+            volumeMounts:
+                - mountPath: "/var/lib/mysql"
+                  name: mysql-storage
+        volumes:
           - name: mysql-storage
             persistentVolumeClaim:
-                claimName: pvc-3g
+                claimName: albertoalvarezgarcia-3g-pvc
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: db
-  labels:
-    app: db-ejer3-app
+    name: db
+    labels:
+        app: albertoalvarezgarcia-db
+        creator: albertoalvarezgarcia
+    
 spec:
-  ports:
-    - port: 3306
-      protocol: TCP
-      name: db-ejer3-app-port
-  selector:
-    app: db-ejer3-app
-  type: ClusterIP
+    ports:
+      - port: 3306
+        protocol: TCP
+        name: albertoalvarezgarcia-db-port
+    selector:
+        app: albertoalvarezgarcia-db
+    type: ClusterIP
