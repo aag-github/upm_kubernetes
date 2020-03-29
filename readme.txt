@@ -1,4 +1,5 @@
-Crear dentro del nodo de minikube el directorio /mnt/albertoalvarezgarcia
+Precondiciones:
+    Crear dentro del nodo de minikube el directorio /mnt/albertoalvarezgarcia
 
 Storage: Se crea un "volume" y un "volume claim". No es necesario hacerlo en ese orden estrictamente,
          se puede hacer el claim antes que el volumen, así que lo podemos poner en el mismo spec.
@@ -16,6 +17,7 @@ DB: Necesitamos que el volumen claim esté operativo, para que la base de datos
 
     Ejecutar: 
         kubectl create -f 2_db_anuncios.yaml
+
     Comprobación:
         Ejecutar: kubectl.exe get deployment,pod,service -l creator=albertoalvarezgarcia
         
