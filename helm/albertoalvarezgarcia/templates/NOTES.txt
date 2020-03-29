@@ -1,0 +1,6 @@
+
+Get to the application at the following URL: http://www.albertoalvarezgarcia.com/anuncios
+
+(NOTE: Since the domain www.albertoalvarezgarcia.com is not resolved by any DNS server,
+you will have to modify your hosts file to resolve this domain to your kubernetes node
+hosting the application)

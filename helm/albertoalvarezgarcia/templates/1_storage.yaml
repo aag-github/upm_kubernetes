@@ -1,0 +1,29 @@
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+    name: albertoalvarezgarcia-10g-pv
+    labels:
+        creator: albertoalvarezgarcia
+spec:
+    storageClassName: manual
+    capacity:
+        storage: 10Gi
+    accessModes:
+        - ReadWriteOnce
+    hostPath:
+        path: "/mnt/albertoalvarezgarcia"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+    name: albertoalvarezgarcia-3g-pvc
+    labels:
+        creator: albertoalvarezgarcia    
+spec:
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce
+    resources:
+        requests:
+            storage: 3Gi

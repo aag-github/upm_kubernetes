@@ -1,0 +1,45 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: albertoalvarezgarcia-app-deployment
+  labels:
+    creator: albertoalvarezgarcia  
+spec:
+  selector:
+    matchLabels:
+      app: albertoalvarezgarcia-app
+  replicas: 1 # tells deployment to run 1 pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+      labels:
+        app: albertoalvarezgarcia-app
+        creator: albertoalvarezgarcia
+    spec:
+      containers:
+      - name: albertoalvarezgarcia-app-container
+        image: codeurjc/java-webapp-bbdd:v2
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "pass"
+        - name: MYSQL_DATABASE
+          value: "test"
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: albertoalvarezgarcia-app-service
+  labels:
+    app: albertoalvarezgarcia-app-service
+    creator: albertoalvarezgarcia
+    
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      name: albertoalvarezgarcia-app-service-port
+  selector:
+    app: albertoalvarezgarcia-app
+  type: ClusterIP

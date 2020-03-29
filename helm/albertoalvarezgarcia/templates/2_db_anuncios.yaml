@@ -1,0 +1,54 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: albertoalvarezgarcia-db-deployment
+    labels:
+        app: albertoalvarezgarcia-db
+        creator: albertoalvarezgarcia
+ 
+spec:
+  selector:
+    matchLabels:
+      app: albertoalvarezgarcia-db
+  replicas: 1 # tells deployment to run 1 pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+        labels:
+            app: albertoalvarezgarcia-db
+            creator: albertoalvarezgarcia
+    spec:
+        containers:
+          - name: albertoalvarezgarcia-db-container
+            image: mysql:5.6
+            env:
+                - name: MYSQL_ROOT_PASSWORD
+                  value: "pass"
+                - name: MYSQL_DATABASE
+                  value: "test"
+            ports:
+                - containerPort: 3306
+            volumeMounts:
+                - mountPath: "/var/lib/mysql"
+                  name: mysql-storage
+        volumes:
+          - name: mysql-storage
+            persistentVolumeClaim:
+                claimName: albertoalvarezgarcia-3g-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: db
+    labels:
+        app: albertoalvarezgarcia-db
+        creator: albertoalvarezgarcia
+    
+spec:
+    ports:
+      - port: 3306
+        protocol: TCP
+        name: albertoalvarezgarcia-db-port
+    selector:
+        app: albertoalvarezgarcia-db
+    type: ClusterIP
