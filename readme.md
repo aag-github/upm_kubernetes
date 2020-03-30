@@ -9,18 +9,19 @@ se puede hacer el claim antes que el volumen, así que lo podemos poner en el mi
     kubectl create -f 1_storage.yaml
 
 ### Comprobar:
-    kubectl.exe get pv,pvc -l creator=albertoalvarezgarcia
+    kubectl get pv,pvc -l creator=albertoalvarezgarcia
 
 El pvc (claim) tiene STATUS "Bound"
 
 # DB Spec
-Necesitamos que el volumen claim esté operativo, para que la base de datos se genere en él.
+Creamos el servicio de base de datos después de que el "volumen claim" esté operativo, para
+que la base de datos se genere en él.
 
 ### Ejecutar:
     kubectl create -f 2_db_anuncios.yaml
 
 ### Comprobar:
-    kubectl.exe get deployment,pod,service -l creator=albertoalvarezgarcia
+    kubectl get deployment,pod,service -l creator=albertoalvarezgarcia
 
 Deben aparecer los tres recursos y el pod debe tener STATUS "Running"
 
@@ -31,7 +32,7 @@ Una vez que la base de datos está levantada, desplegamos la aplicación.
     kubectl create -f 3_app_anuncios.yaml
 
 ### Comprobar:
-    kubectl.exe get pod,deployment,service -l creator=albertoalvarezgarcia
+    kubectl get pod,deployment,service -l creator=albertoalvarezgarcia
 
 Deben aparecer 6 recursos (3db + 3 app) y los pods deben tener STATUS "Running"
 
@@ -42,7 +43,7 @@ Para exteriorizar la app fuera del cluster.
     kubectl create -f 4_ingress.yaml
 
 ### Comprobar:
-    kubectl.exe get ingress -l creator=albertoalvarezgarcia
+    kubectl get ingress -l creator=albertoalvarezgarcia
 
 Aparecerá el host www.albertoalvarezgarcia.com y PORT 80
 
