@@ -4,11 +4,13 @@
 # QUE HAY EN EL HELM CHART DE LA APLICACION FUNCIONA CORRECTAMENTE
 ####################
 anuncios_db:
+  # Name of the database for the web-app to connect to
   db_name: default_db_name
+  # Root password of the database for the web-app to connect to
   password: default_password
 
 service:
-  #TCP port to access the database (default port: 3306)
+  # TCP port to access the database
   port: 40 
-  #valid values: "ClusterIP", "ExternalName", "LoadBalancer", "NodePort"  
+  # Db service type. Valid values: "ClusterIP", "ExternalName", "LoadBalancer", "NodePort" "NodePort"
   type: ExternalName

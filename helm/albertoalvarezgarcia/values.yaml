@@ -3,16 +3,26 @@
 # Declare variables to be passed into your templates.
 
 anuncios_app:
-  replicaCount: 2
+  #Number of pods of the web-app to create
+  replicaCount: 1
 
+# Settings for anuncios_db dependency
 anuncios_db:
+  # Install db dependency if "enabled" set to true
   enabled: true
+  # Replacements for anuncios_db values.yaml
   anuncios_db:
+    # Name of the database for the web-app to connect to
     db_name: test
+    # Root password of the database for the web-app to connect to
     password: pass
+  # Replacements for anuncios_db service values.yaml
   service:
+    # TCP port to connect to the database
     port: 3306
+    # Db service type valid values: "ClusterIP", "ExternalName", "LoadBalancer", "NodePort"
     type: ClusterIP
   
 service:
+  # Web-app TCP port
   port: 80
