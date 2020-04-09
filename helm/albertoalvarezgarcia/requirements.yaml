@@ -1,0 +1,7 @@
+dependencies:
+  - name: anuncios_db
+    version: 1.x.x
+    repository: file://charts/anuncios_db/
+    condition: anuncios_db.enabled
+    tags:
+      - anuncios-database

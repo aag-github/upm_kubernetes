@@ -2,9 +2,17 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-app_anuncios:
+anuncios_app:
   replicaCount: 2
 
-
+anuncios_db:
+  enabled: true
+  anuncios_db:
+    db_name: test
+    password: pass
+  service:
+    port: 3306
+    type: ClusterIP
+  
 service:
   port: 80

@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       app: albertoalvarezgarcia-app
-  replicas: {{ .Values.app_anuncios.replicaCount }}
+  replicas: {{ .Values.anuncios_app.replicaCount }}
   template: # create pods using pod definition in this template
     metadata:
       labels:

@@ -1,0 +1,14 @@
+#### IMPORTANTE:
+# LOS VALORES EN ESTE FICHERO NO SON LOS CORRECTOS
+# ESTA HECHO ASI PARA DEMOSTRAR QUE LOS VALORES DEL FICHERO VALUES.YAML
+# QUE HAY EN EL HELM CHART DE LA APLICACION FUNCIONA CORRECTAMENTE
+####################
+anuncios_db:
+  db_name: default_db_name
+  password: default_password
+
+service:
+  #TCP port to access the database (default port: 3306)
+  port: 40 
+  #valid values: "ClusterIP", "ExternalName", "LoadBalancer", "NodePort"  
+  type: ExternalName
