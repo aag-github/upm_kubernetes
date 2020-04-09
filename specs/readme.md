@@ -1,3 +1,11 @@
+# Helper scripts
+Todo el proceso de creación que se describe a continuación se puede ejecutar con el script create.bat/create.sh
+Para desinstalar todo se puede ejecutar destroy.bat/destroy.sh
+
+NOTA IMPORTANTE: 
+Al hacer el destroy borro todo el contenido de la base de datos porque la aplicación no funciona correctamente
+y cada vez que se crea de nuevo se añade un registro más, en vez no hacer nada si la base de datos ya existe.
+
 # Precondiciones
 Crear dentro del nodo de minikube el directorio /mnt/albertoalvarezgarcia
 
