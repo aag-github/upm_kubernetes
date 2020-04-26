@@ -8,6 +8,6 @@ FULL_VERSION="$V.$NEW_REV"
 echo $FULL_VERSION
 echo $FULL_VERSION > version.txt
 git add version.txt
-git commit -m "New sub-version: $FULL_VERSION"
+git commit -m "New revision: $FULL_VERSION"
 git tag $FULL_VERSION $1
 git push --tags
